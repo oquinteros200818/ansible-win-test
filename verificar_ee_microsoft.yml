@@ -1,0 +1,13 @@
+---
+- name: "Prueba con object_info"
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "Buscando objetos (esto validará si la colección carga)"
+      microsoft.ad.object_info:
+        filter: ObjectClass -eq 'user'
+      register: resultado
+
+    - name: "Mostrar diagnóstico"
+      debug:
+        msg: "Si ves este mensaje, la colección SÍ cargó. Error esperado: {{ resultado.msg }}"
