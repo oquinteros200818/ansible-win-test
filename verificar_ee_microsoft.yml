@@ -1,13 +1,12 @@
 ---
-- name: "Prueba con object_info"
+- name: "Prueba básica con ansible.windows"
   hosts: localhost
   gather_facts: false
-  tasks:
-    - name: "Buscando objetos (esto validará si la colección carga)"
-      microsoft.ad.object_info:
-        filter: ObjectClass -eq 'user'
-      register: resultado
 
-    - name: "Mostrar diagnóstico"
+  tasks:
+    - name: "Ping a host Windows"
+      ansible.windows.win_ping:
+
+    - name: "Mostrar mensaje"
       debug:
-        msg: "Si ves este mensaje, la colección SÍ cargó. Error esperado: {{ resultado.msg }}"
+        msg: "Si ves este mensaje, la colección ansible.windows funciona correctamente"
